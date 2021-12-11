@@ -75,5 +75,5 @@ void Game::clean()
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
     cout << "Game Cleaned" << endl;
-    //hel
+    
 }
