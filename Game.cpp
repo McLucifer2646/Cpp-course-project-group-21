@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "TextureManager.hpp"
 
 SDL_Texture *Bhishma, *back_tex;
 SDL_Rect srcR, destR;
@@ -26,12 +27,13 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         }
         isRunning = true;
 
-        SDL_Surface *back_surface = IMG_Load("assets/main.png");
-        back_tex = SDL_CreateTextureFromSurface(renderer, back_surface);
-        SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
-        Bhishma = SDL_CreateTextureFromSurface(renderer, temp);
-        SDL_FreeSurface(temp);
-        SDL_FreeSurface(back_surface);
+        // SDL_Surface *back_surface = IMG_Load("assets/main.png");
+        back_tex =  TextureManager::LoadTexture("assets/back.png", renderer);
+        // SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
+        Bhishma = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
+        // SDL_FreeSurface(temp);
+        // SDL_FreeSurface(back_surface);
+        
     }
     else
         isRunning = false;
