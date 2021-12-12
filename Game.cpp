@@ -1,8 +1,12 @@
 #include "Game.hpp"
 #include "TextureManager.hpp"
+#include "GameObject.hpp"
 
-SDL_Texture *Bhishma, *back_tex;
-SDL_Rect srcR, destR;
+GameObject* Bhishma;
+SDL_Texture *back_tex;
+
+// SDL_Texture *Bhishma, *back_tex;
+// SDL_Rect srcR, destR;
 
 Game::Game() {}
 Game::~Game() {}
@@ -27,12 +31,14 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         }
         isRunning = true;
 
-        //  SDL_Surface *back_surface = IMG_Load("assets/main.png");
+        // //  SDL_Surface *back_surface = IMG_Load("assets/main.png");
         back_tex =  TextureManager::LoadTexture("assets/main.png", renderer);
-        // // SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
-        Bhishma = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
-        // //SDL_FreeSurface(temp);
-        //  SDL_FreeSurface(back_surface);        
+        // // // SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
+        // Bhishma = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
+        // // //SDL_FreeSurface(temp);
+        // //  SDL_FreeSurface(back_surface);        
+        //back_tex = new GameObject("assets/main.png", renderer);
+        Bhishma = new GameObject("assets/Bhishm.png", renderer, 0, 0);
     }
     else
         isRunning = false;
@@ -56,17 +62,14 @@ void Game::handleEvents()
 void Game::update()
 {
     count++;
-    destR.h = 200;
-    destR.w = 80;
-    destR.y = 150;
-    destR.x = 20;
+    Bhishma->update();
 }
 
 void Game::render()
 {
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, back_tex, NULL, NULL);
-    SDL_RenderCopy(renderer, Bhishma, NULL, &destR);
+    Bhishma->render(); 
     SDL_RenderPresent(renderer);
 }
 
