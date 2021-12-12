@@ -8,7 +8,6 @@
 using namespace std;
 
 class Game
-
 {
     public:
         Game();
@@ -21,11 +20,13 @@ class Game
     
         bool running() { return isRunning;}
 
+        static SDL_Renderer *renderer;
+
     private:
         int count = 0;
         bool isRunning;
         SDL_Window *window;
-        SDL_Renderer *renderer;
+        //SDL_Renderer *renderer;
 };
 
 #endif
