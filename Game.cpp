@@ -28,12 +28,11 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         isRunning = true;
 
         //  SDL_Surface *back_surface = IMG_Load("assets/main.png");
-        back_tex =  TextureManager::LoadTexture("assets/back.png", renderer);
+        back_tex =  TextureManager::LoadTexture("assets/main.png", renderer);
         // // SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
         Bhishma = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
         // //SDL_FreeSurface(temp);
-        //  SDL_FreeSurface(back_surface);
-        
+        //  SDL_FreeSurface(back_surface);        
     }
     else
         isRunning = false;
