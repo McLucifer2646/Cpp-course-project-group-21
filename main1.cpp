@@ -10,7 +10,7 @@ int main(int argc, const char *argv[])
     int frameTime;
 
     g = new Game();
-    g->init("Mahabharat", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 400, false);
+    g->init("Mahabharat", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 600, false);
     while (g->running())
     {
         framestart = SDL_GetTicks();

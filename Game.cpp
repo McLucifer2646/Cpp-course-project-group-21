@@ -38,7 +38,7 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         // // //SDL_FreeSurface(temp);
         // //  SDL_FreeSurface(back_surface);        
         //back_tex = new GameObject("assets/main.png", renderer);
-        Bhishma = new GameObject("assets/Bhishm.png", renderer, 0, 0);
+        Bhishma = new GameObject("assets/Bhishm.png", renderer, 1, 400);
     }
     else
         isRunning = false;
@@ -61,7 +61,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
-    count++;
+    //count++;
     Bhishma->update();
 }
 
@@ -79,5 +79,4 @@ void Game::clean()
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
     cout << "Game Cleaned" << endl;
-    
 }
