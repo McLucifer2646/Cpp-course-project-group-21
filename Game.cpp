@@ -2,10 +2,16 @@
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
 
+#include "ECS.hpp"
+#include "Components.hpp"
+
 GameObject* Bhishma;
 SDL_Texture *back_tex;
 
 SDL_Renderer* Game::renderer = nullptr;
+
+Manager manager;
+auto& newPlayer(manager.addEntity());
 
 // SDL_Texture *Bhishma, *back_tex;
 // SDL_Rect srcR, destR;
@@ -41,6 +47,8 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         // //  SDL_FreeSurface(back_surface);        
         //back_tex = new GameObject("assets/main.png", renderer);
         Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
+
+        newPlayer.addComponent<PositionComponent>();
     }
     else
         isRunning = false;
@@ -65,6 +73,8 @@ void Game::update()
 {
     //count++;
     Bhishma->update();
+    manager.update();
+    std::cout << newPlayer.getComponent<PositionComponent>().x() << " " << newPlayer.getComponent<PositionComponent>().y() << std::endl;
 }
 
 void Game::render()
