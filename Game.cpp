@@ -34,13 +34,13 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         isRunning = true;
 
         // //  SDL_Surface *back_surface = IMG_Load("assets/main.png");
-        back_tex =  TextureManager::LoadTexture("assets/main.png");
+        //back_tex =  TextureManager::LoadTexture("assets/main.png");
         // // // SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
         // Bhishma = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
         // // //SDL_FreeSurface(temp);
         // //  SDL_FreeSurface(back_surface);        
         //back_tex = new GameObject("assets/main.png", renderer);
-        Bhishma = new GameObject("assets/Bhishm.png", 1, 400);
+        Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
     }
     else
         isRunning = false;
@@ -70,7 +70,7 @@ void Game::update()
 void Game::render()
 {
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, back_tex, NULL, NULL);
+    //SDL_RenderCopy(renderer, back_tex, NULL, NULL);
     Bhishma->render(); 
     SDL_RenderPresent(renderer);
 }
