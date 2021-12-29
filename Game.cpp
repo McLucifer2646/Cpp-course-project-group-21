@@ -56,7 +56,7 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         //player = new GameObject("assets/Bhishm.png", 4, 300);
 
         player.addComponent<TransformComponent>(4, 300, 94, 80, 2.5);
-        player.addComponent<SpriteComponent>("assets/hero.png", 8, 100);//, 312, 800);
+        player.addComponent<SpriteComponent>("assets/hero.png", true);//, 312, 800);
         player.addComponent<KeyboardController>();
         player.addComponent<ColliderComponent>("player");
 
