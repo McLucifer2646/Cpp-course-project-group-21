@@ -51,7 +51,7 @@ class KeyboardController : public Component
                         transform->velocity.x = 0;
                         break;
                     case SDLK_s:
-                        transform->velocity.y = 0
+                        transform->velocity.y = 0;
                         break;
                     default:
                         break;

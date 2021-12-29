@@ -47,4 +47,4 @@ class SpriteComponent : public Component
         {
             TextureManager::Draw(texture, srcRect, destRect);
         }
-}
+};

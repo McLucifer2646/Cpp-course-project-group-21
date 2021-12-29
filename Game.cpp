@@ -3,16 +3,17 @@
 #include "ECS/Components.hpp"
 #include "Vector2D.hpp"
 
-// #include "ECS.hpp"
+//#include "ECS/ECS.hpp"
 // #include "Components.hpp"
 
 //GameObject* Bhishma;
-Manager manager;
+
 SDL_Texture *back_tex;
 
 SDL_Event Game::event;
 SDL_Renderer* Game::renderer = nullptr;
 
+Manager manager;
 auto& Bhishma(manager.addEntity());
 
 // SDL_Texture *Bhishma, *back_tex;
