@@ -90,8 +90,9 @@ void Game::update()
     manager.refresh();
     manager.update();
     
-    if(Collision::AABB(Bhishma.getComponent<ColliderComponent>.collider, wall.getComponent<ColliderComponent>.collider))
+    if(Collision::AABB(Bhishma.getComponent<ColliderComponent>().collider, wall.getComponent<ColliderComponent>().collider))
     {
+        Bhishma.getComponent<TransformComponent>().velocity * -1;
         std::cout << "Wall Hit" << std::endl;
     }
 }
