@@ -6,6 +6,8 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 class ColliderComponent;
 
 class Game
@@ -23,7 +25,7 @@ class Game
 
         static SDL_Renderer *renderer;
         static SDL_Event event;
-        static std::vector<ColliderComponent*> colliders;
+        static vector<ColliderComponent*> colliders;
 
     private:
         int count = 0;
