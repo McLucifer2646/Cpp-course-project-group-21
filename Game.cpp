@@ -7,12 +7,13 @@
 //#include "ECS/ECS.hpp"
 // #include "Components.hpp"
 
-//GameObject* Bhishma;
 
 SDL_Texture *back_tex;
 
 SDL_Event Game::event;
 SDL_Renderer* Game::renderer = nullptr;
+
+std::vector<ColliderComponent*> Game::colliders;
 
 Manager manager;
 auto& Bhishma(manager.addEntity());
@@ -54,8 +55,8 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
 
         //Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
 
-        Bhishma.addComponent<TransformComponent>(4, 300, 800, 312, 0.35);
-        Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png");//, 312, 800);
+        Bhishma.addComponent<TransformComponent>(4, 300, 119, 83, 1);
+        Bhishma.addComponent<SpriteComponent>("assets/idle.png", 6, 200);//, 312, 800);
         Bhishma.addComponent<KeyboardController>();
         Bhishma.addComponent<ColliderComponent>("player");
 

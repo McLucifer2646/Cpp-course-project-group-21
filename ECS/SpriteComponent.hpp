@@ -11,12 +11,23 @@ class SpriteComponent : public Component
         SDL_Texture *texture;
         SDL_Rect srcRect, destRect;
 
+        bool animated = false;
+        int frames = 0;
+        int speed = 100;
+
     public:
         SpriteComponent() = default;
-        SpriteComponent(const char* path)//, int srcw, int srch)
+        SpriteComponent(const char* path)
         {
             setTex(path);
-            //setBounds(srcw, srch);
+        }
+
+        SpriteComponent(const char* path, int nFrames, int mSpeed)
+        {
+            animated = true;
+            frames = nFrames;
+            speed = mSpeed;
+            setTex(path);
         }
 
         ~SpriteComponent()
@@ -29,12 +40,6 @@ class SpriteComponent : public Component
             texture = TextureManager::LoadTexture(path);
         }
 
-        // void setBounds(int srcw, int srch)
-        // {
-        //     srcRect.w = srcw;
-        //     srcRect.h = srch;
-        // }
-
         void init() override 
         {
             transform = &entity->getComponent<TransformComponent>();
@@ -46,12 +51,13 @@ class SpriteComponent : public Component
         }
         void update() override 
         {
+            if(animated){
+                srcRect.x = srcRect.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
+            }
             destRect.x = static_cast<int>(transform->position.x);
             destRect.y = static_cast<int>(transform->position.y);
             destRect.w = static_cast<int>(transform->width * transform->scale);
             destRect.h = static_cast<int>(transform->height * transform->scale);
-            // destRect.w = 110;
-            // destRect.h = 256;
         }
         void draw() override 
         {
