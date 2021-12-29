@@ -16,7 +16,7 @@ class SpriteComponent : public Component
         SpriteComponent(const char* path)//, int srcw, int srch)
         {
             setTex(path);
-            setBounds(srcw, srch);
+            //setBounds(srcw, srch);
         }
 
         ~SpriteComponent()

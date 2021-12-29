@@ -42,7 +42,7 @@ class TransformComponent : public Component
 
         void init() override
         {
-            velocity.Zero()
+            velocity.Zero();
         }
         
         void update() override
