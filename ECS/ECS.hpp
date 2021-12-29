@@ -66,7 +66,7 @@ class Entity
 
         template <typename T> bool hasComponent() const
 	    {
-		    return componentBitset[getComponentTypeID<T>()];
+		    return componentBitSet[getComponentTypeID<T>()];
 	    }
 
         template <typename T, typename... TArgs>

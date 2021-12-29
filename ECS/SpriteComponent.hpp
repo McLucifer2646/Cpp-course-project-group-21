@@ -50,6 +50,8 @@ class SpriteComponent : public Component
             destRect.y = static_cast<int>(transform->position.y);
             destRect.w = static_cast<int>(transform->width * transform->scale);
             destRect.h = static_cast<int>(transform->height * transform->scale);
+            // destRect.w = 110;
+            // destRect.h = 256;
         }
         void draw() override 
         {

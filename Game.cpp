@@ -54,12 +54,12 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
 
         //Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
 
-        Bhishma.addComponent<TransformComponent>(4, 300, 312, 800, 0.25);
+        Bhishma.addComponent<TransformComponent>(4, 300, 800, 312, 0.35);
         Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png");//, 312, 800);
         Bhishma.addComponent<KeyboardController>();
         Bhishma.addComponent<ColliderComponent>("player");
 
-        wall.addComponent<TransformComponent>(600, 300, 312, 800, 0.25);
+        wall.addComponent<TransformComponent>(600, 300, 800, 312, 0.35);
         wall.addComponent<SpriteComponent>("assets/Bhishm.png");
         wall.addComponent<ColliderComponent>("wall");
 
