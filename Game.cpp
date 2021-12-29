@@ -1,17 +1,18 @@
 #include "Game.hpp"
 #include "TextureManager.hpp"
-#include "GameObject.hpp"
 
-#include "ECS.hpp"
-#include "Components.hpp"
+#include "ECS/Components.hpp"
 
-GameObject* Bhishma;
+// #include "ECS.hpp"
+// #include "Components.hpp"
+
+//GameObject* Bhishma;
 SDL_Texture *back_tex;
 
 SDL_Renderer* Game::renderer = nullptr;
 
 Manager manager;
-auto& newPlayer(manager.addEntity());
+auto& Bhishma(manager.addEntity());
 
 // SDL_Texture *Bhishma, *back_tex;
 // SDL_Rect srcR, destR;
@@ -46,9 +47,11 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         // // //SDL_FreeSurface(temp);
         // //  SDL_FreeSurface(back_surface);        
         //back_tex = new GameObject("assets/main.png", renderer);
-        Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
 
-        newPlayer.addComponent<PositionComponent>();
+        //Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
+
+        Bhishma.addComponent<PositionComponent>(4, 300);
+        Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png");
     }
     else
         isRunning = false;
@@ -72,16 +75,19 @@ void Game::handleEvents()
 void Game::update()
 {
     //count++;
-    Bhishma->update();
+    //Bhishma->update();
+    manager.refresh();
     manager.update();
-    std::cout << newPlayer.getComponent<PositionComponent>().x() << " " << newPlayer.getComponent<PositionComponent>().y() << std::endl;
+    // std::cout << newPlayer.getComponent<PositionComponent>().x() << " " << newPlayer.getComponent<PositionComponent>().y() << std::endl;
+
 }
 
 void Game::render()
 {
     SDL_RenderClear(renderer);
+    manager.draw();
     //SDL_RenderCopy(renderer, back_tex, NULL, NULL);
-    Bhishma->render(); 
+    //Bhishma->render(); 
     SDL_RenderPresent(renderer);
 }
 
