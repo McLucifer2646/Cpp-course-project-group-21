@@ -55,8 +55,8 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
 
         //Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
 
-        Bhishma.addComponent<TransformComponent>(4, 300, 142, 92, 1);
-        Bhishma.addComponent<SpriteComponent>("assets/walk.png", 14, 100);//, 312, 800);
+        Bhishma.addComponent<TransformComponent>(4, 300, 94, 80, 2.5);
+        Bhishma.addComponent<SpriteComponent>("assets/hero.png", 8, 100);//, 312, 800);
         Bhishma.addComponent<KeyboardController>();
         Bhishma.addComponent<ColliderComponent>("player");
 
