@@ -16,6 +16,7 @@ SDL_Renderer* Game::renderer = nullptr;
 
 Manager manager;
 auto& Bhishma(manager.addEntity());
+auto& wall(manager.addEntity());
 
 // SDL_Texture *Bhishma, *back_tex;
 // SDL_Rect srcR, destR;
@@ -57,6 +58,12 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png");//, 312, 800);
         Bhishma.addComponent<KeyboardController>();
         Bhishma.addComponent<ColliderComponent>("player");
+
+        wall.addComponent<TransformComponent>(600, 300, 312, 800, 0.25);
+        wall.addComponent<SpriteComponent>("assets/Bhishm.png");
+        wall.addComponent<ColliderComponent>("wall");
+
+
     }
     else
         isRunning = false;
@@ -82,7 +89,11 @@ void Game::update()
     //Bhishma->update();
     manager.refresh();
     manager.update();
-    // std::cout << newPlayer.getComponent<PositionComponent>().x() << " " << newPlayer.getComponent<PositionComponent>().y() << std::endl;
+    
+    if(Collision::AABB(Bhishma.getComponent<ColliderComponent>.collider, wall.getComponent<ColliderComponent>.collider))
+    {
+        std::cout << "Wall Hit" << std::endl;
+    }
 }
 
 void Game::render()
