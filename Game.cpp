@@ -7,11 +7,12 @@
 // #include "Components.hpp"
 
 //GameObject* Bhishma;
+Manager manager;
 SDL_Texture *back_tex;
 
+SDL_Event Game::event;
 SDL_Renderer* Game::renderer = nullptr;
 
-Manager manager;
 auto& Bhishma(manager.addEntity());
 
 // SDL_Texture *Bhishma, *back_tex;
@@ -52,6 +53,7 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
 
         Bhishma.addComponent<TransformComponent>(4, 300);
         Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png", 312, 800);
+        Bhishma.addComponent<KeyboardController>();
     }
     else
         isRunning = false;
@@ -59,8 +61,6 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
 
 void Game::handleEvents()
 {
-    SDL_Event event;
-    
     SDL_PollEvent(&event);
     switch (event.type)
     {
@@ -80,7 +80,6 @@ void Game::update()
     manager.refresh();
     manager.update();
     // std::cout << newPlayer.getComponent<PositionComponent>().x() << " " << newPlayer.getComponent<PositionComponent>().y() << std::endl;
-
 }
 
 void Game::render()
