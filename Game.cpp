@@ -16,10 +16,10 @@ SDL_Renderer* Game::renderer = nullptr;
 std::vector<ColliderComponent*> Game::colliders;
 
 Manager manager;
-auto& Bhishma(manager.addEntity());
+auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
 
-// SDL_Texture *Bhishma, *back_tex;
+// SDL_Texture *player, *back_tex;
 // SDL_Rect srcR, destR;
 
 Game::Game() {}
@@ -48,17 +48,17 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         // //  SDL_Surface *back_surface = IMG_Load("assets/main.png");
         //back_tex =  TextureManager::LoadTexture("assets/main.png");
         // // // SDL_Surface *temp = IMG_Load("assets/Bhishm.png");
-        // Bhishma = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
+        // player = TextureManager::LoadTexture("assets/Bhishm.png", renderer);
         // // //SDL_FreeSurface(temp);
         // //  SDL_FreeSurface(back_surface);        
         //back_tex = new GameObject("assets/main.png", renderer);
 
-        //Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
+        //player = new GameObject("assets/Bhishm.png", 4, 300);
 
-        Bhishma.addComponent<TransformComponent>(4, 300, 94, 80, 2.5);
-        Bhishma.addComponent<SpriteComponent>("assets/hero.png", 8, 100);//, 312, 800);
-        Bhishma.addComponent<KeyboardController>();
-        Bhishma.addComponent<ColliderComponent>("player");
+        player.addComponent<TransformComponent>(4, 300, 94, 80, 2.5);
+        player.addComponent<SpriteComponent>("assets/hero.png", 8, 100);//, 312, 800);
+        player.addComponent<KeyboardController>();
+        player.addComponent<ColliderComponent>("player");
 
         wall.addComponent<TransformComponent>(600, 300, 800, 312, 0.35);
         wall.addComponent<SpriteComponent>("assets/Bhishm.png");
@@ -87,13 +87,13 @@ void Game::handleEvents()
 void Game::update()
 {
     //count++;
-    //Bhishma->update();
+    //player->update();
     manager.refresh();
     manager.update();
     
-    if(Collision::AABB(Bhishma.getComponent<ColliderComponent>().collider, wall.getComponent<ColliderComponent>().collider))
+    if(Collision::AABB(player.getComponent<ColliderComponent>().collider, wall.getComponent<ColliderComponent>().collider))
     {
-        Bhishma.getComponent<TransformComponent>().velocity * -1;
+        player.getComponent<TransformComponent>().velocity * -1;
         std::cout << "Wall Hit" << std::endl;
     }
 }
@@ -103,7 +103,7 @@ void Game::render()
     SDL_RenderClear(renderer);
     manager.draw();
     //SDL_RenderCopy(renderer, back_tex, NULL, NULL);
-    //Bhishma->render(); 
+    //player->render(); 
     SDL_RenderPresent(renderer);
 }
 
