@@ -6,15 +6,16 @@
 class SpriteComponent : public Component
 {
     private:
-        TransformComponent *position;
+        TransformComponent *transform;
         SDL_Texture *texture;
         SDL_Rect srcRect, destRect;
 
     public:
         SpriteComponent() = default;
-        SpriteComponent(const char* path)
+        SpriteComponent(const char* path, int srcw, int srch)
         {
             setTex(path);
+            setBounds(srcw, srch);
         }
 
         void setTex(const char* path)
@@ -22,20 +23,25 @@ class SpriteComponent : public Component
             texture = TextureManager::LoadTexture(path);
         }
 
+        void setBounds(int srcw, int srch)
+        {
+            srcRect.w = srcw;
+            srcRect.h = srch;
+        }
+
         void init() override 
         {
-            position = &entity->getComponent<PositionComponent>();
+            transform = &entity->getComponent<TransformComponent>();
 
             srcRect.x = srcRect.y = 0;
-            srcRect.w = 312;
-            srcRect.h = 800;
+            
             destRect.w = 110;
             destRect.h = 256;
         }
         void update() override 
         {
-            destRect.x = position->x();
-            destRect.y = position->y();
+            destRect.x = transform->x();
+            destRect.y = transform->y();
         }
         void draw() override 
         {

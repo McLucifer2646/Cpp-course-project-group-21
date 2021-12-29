@@ -51,7 +51,7 @@ void Game::init(const char *title, int xpos, int ypos, int w, int h, bool fullsc
         //Bhishma = new GameObject("assets/Bhishm.png", 4, 300);
 
         Bhishma.addComponent<PositionComponent>(4, 300);
-        Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png");
+        Bhishma.addComponent<SpriteComponent>("assets/Bhishm.png", 312, 800);
     }
     else
         isRunning = false;
