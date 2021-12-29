@@ -2,6 +2,7 @@
 
 #include "Components.hpp"
 #include "SDL2/SDL.h"
+#include "../TextureManager.hpp"
 
 class SpriteComponent : public Component
 {
@@ -12,10 +13,15 @@ class SpriteComponent : public Component
 
     public:
         SpriteComponent() = default;
-        SpriteComponent(const char* path, int srcw, int srch)
+        SpriteComponent(const char* path)//, int srcw, int srch)
         {
             setTex(path);
             setBounds(srcw, srch);
+        }
+
+        ~SpriteComponent()
+        {
+            SDL_DestroyTexture(texture);
         }
 
         void setTex(const char* path)
@@ -23,26 +29,27 @@ class SpriteComponent : public Component
             texture = TextureManager::LoadTexture(path);
         }
 
-        void setBounds(int srcw, int srch)
-        {
-            srcRect.w = srcw;
-            srcRect.h = srch;
-        }
+        // void setBounds(int srcw, int srch)
+        // {
+        //     srcRect.w = srcw;
+        //     srcRect.h = srch;
+        // }
 
         void init() override 
         {
             transform = &entity->getComponent<TransformComponent>();
 
             srcRect.x = srcRect.y = 0;
-            // srcRect.w = 312;
-            // srcRect.h = 800;            
-            destRect.w = 110;
-            destRect.h = 256;
+            srcRect.w = transform->width;
+            srcRect.h = transform->height;            
+            
         }
         void update() override 
         {
-            destRect.x = (int)transform->position.x;
-            destRect.y = (int)transform->position.y;
+            destRect.x = static_cast<int>(transform->position.x);
+            destRect.y = static_cast<int>(transform->position.y);
+            destRect.w = transform->width * transform->scale;
+            destRect.h = transform->height * transform->scale;
         }
         void draw() override 
         {
