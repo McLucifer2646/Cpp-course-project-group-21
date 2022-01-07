@@ -132,22 +132,17 @@ void Game::init(const char * tit, int h, int w, int x, int y, bool f)
 	//tile2.addComponent<ColliderComponent>("water");
 
 	map1->loadMap("Map_matrix.map", 25, 20);
-
-
 	//player.addComponent<TransformComponent>(100, 300, 480, 500, 2);
 	
 
 	enemy.addComponent<TransformComponent>(900, 300, 135, 153, 1);
 	enemy.addComponent<SpriteComponent>("villain.png", 0, 12, 0, 12, 0, 12, 0, 12, true);
-	//enemy.addComponent<KeyBoardController>();
-	//enemy.addComponent<ColliderComponent>("enemy");
 	enemy.addGroup(groupPlayers);
 
 	//wall.addComponent<TransformComponent>(440.0f, 150.0f, 600, 20, 1);
 	//wall.addComponent<SpriteComponent>("dirt.png");
 	//wall.addComponent<ColliderComponent>("wall");
 	//wall.addGroup(groupMap);
-
 }
 
 auto& tiles(manager.getGroup(Game::groupMap));
@@ -341,7 +336,6 @@ void Game::update()
 		if (camera.y > camera.h)
 			camera.y = camera.h;
 	}
-
 }
 
 void Game::render()
@@ -488,7 +482,6 @@ void Game::render()
 		e2e->Render();
 
 	}
-
 	SDL_RenderPresent(ren);
 }
 
@@ -505,4 +498,3 @@ void Game::clean()
 	SDL_Quit();
 	cout << "Game Quit\n";
 }
-
